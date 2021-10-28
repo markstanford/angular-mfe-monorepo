@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { MatTableModule } from '@angular/material/table';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersListComponent } from './users-list/users-list.component';
@@ -17,7 +18,8 @@ import { UsersEffects, usersFeatureKey, usersReducer, UsersService } from 'share
     CommonModule,
     UsersRoutingModule,
     StoreModule.forFeature(usersFeatureKey, usersReducer),
-    EffectsModule.forFeature([UsersEffects])
+    EffectsModule.forFeature([UsersEffects]),
+    MatTableModule
   ],
   providers: [UsersService]
 })

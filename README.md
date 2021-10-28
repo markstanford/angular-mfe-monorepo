@@ -274,7 +274,18 @@ NB at this point dynamically loaded feature modules will include the feature sta
 NB Because the dashboard dynamically loads components rather than modules, any dependencies the component uses e.g. services or NGRX feature stores need to be included in the host' dashboard module. It's hoped that when Angular allows module-less components that this won't be required (see https://github.com/angular/angular/discussions/43784).
 
 
+### Install Angular Material
+Unfortunately because the Angular Architects plugin has altered the main.ts and angular.json files, the `ng add @angular/material` won't work. The Angular Material library needs to be set up manually for the 3 projects.  
 
+Add the material libs to the shared libs for each webpack config:
+```
+shared: share({
+  ...
+  "@angular/cdk": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+  "@angular/material": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+  ...
+})
+```
 
 ### Gotchas
 - If the host app complains of missing libraries/services then check the library is being shared in the MFE's webpack config as a shared library. 

@@ -1,7 +1,16 @@
-<h1>Host</h1>
-<ul>
-  <li><a routerLink="dashboard">Dashboard</a></li>
-  <li><a routerLink="users">Users</a></li>
-  <li><a routerLink="messages">Messages</a></li>
-</ul>
-<router-outlet></router-outlet>
+<p>
+  <mat-toolbar color="primary">
+    <button mat-button aria-label="Dashboard" routerLink="dashboard">
+      Dashboard
+    </button>
+    <button mat-button aria-label="Users" routerLink="users">
+      Users
+    </button>
+    <button mat-button aria-label="Messages" routerLink="messages">
+      Messages
+    </button>
+  </mat-toolbar>
+</p>
+<div class="router-container">
+  <router-outlet></router-outlet>
+</div>

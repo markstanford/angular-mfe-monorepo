@@ -36,7 +36,8 @@
               }
             ],
             "styles": [
-              "projects/host/src/styles.scss"
+              "projects/host/src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": [],
             "extraWebpackConfig": "projects/host/webpack.config.js",
@@ -113,7 +114,8 @@
               "projects/host/src/assets"
             ],
             "styles": [
-              "projects/host/src/styles.scss"
+              "projects/host/src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": []
           }
@@ -153,7 +155,8 @@
               }
             ],
             "styles": [
-              "projects/users-client/src/styles.scss"
+              "projects/users-client/src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": [],
             "extraWebpackConfig": "projects/users-client/webpack.config.js",
@@ -230,7 +233,8 @@
               "projects/users-client/src/assets"
             ],
             "styles": [
-              "projects/users-client/src/styles.scss"
+              "projects/users-client/src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": []
           }
@@ -270,7 +274,8 @@
               }
             ],
             "styles": [
-              "projects/messages-client/src/styles.scss"
+              "projects/messages-client/src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": [],
             "extraWebpackConfig": "projects/messages-client/webpack.config.js",
@@ -347,7 +352,8 @@
               "projects/messages-client/src/assets"
             ],
             "styles": [
-              "projects/messages-client/src/styles.scss"
+              "projects/messages-client/src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": []
           }

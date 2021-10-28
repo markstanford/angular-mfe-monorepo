@@ -1,6 +1,17 @@
 <h1>Messages List</h1>
-<div class="messages">
-  <div class="user" *ngFor="let message of messages$ | async">
-    {{message.message}}
-  </div>
-</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="message">
+    <th mat-header-cell *matHeaderCellDef> Message </th>
+    <td mat-cell *matCellDef="let element"> {{element.message}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

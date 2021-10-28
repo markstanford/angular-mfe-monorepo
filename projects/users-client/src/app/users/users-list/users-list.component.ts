@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { UsersActions, User, selectAllUsers } from 'shared';
 
@@ -9,15 +10,23 @@ import { UsersActions, User, selectAllUsers } from 'shared';
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnDestroy {
 
-  users$: Observable<User[]> | undefined;
+  displayedColumns: string[] = ['id', 'name', 'email', 'active'];
+  dataSource: User[] = [];
+  private destroy$ = new Subject<void>();
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.store.dispatch(UsersActions.loadUsers());
-    this.users$ = this.store.select(selectAllUsers);
+    this.store.select(selectAllUsers)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((users: User[]) => this.dataSource = users);
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.unsubscribe();
+  }
 }

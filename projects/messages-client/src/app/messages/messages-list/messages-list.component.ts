@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { Message, MessagesActions, selectAllMessages } from 'shared';
 
@@ -9,15 +10,24 @@ import { Message, MessagesActions, selectAllMessages } from 'shared';
   templateUrl: './messages-list.component.html',
   styleUrls: ['./messages-list.component.scss']
 })
-export class MessagesListComponent implements OnInit {
+export class MessagesListComponent implements OnInit, OnDestroy {
 
-  messages$: Observable<Message[]> | undefined;
+  displayedColumns: string[] = ['id', 'message'];
+  dataSource: Message[] = [];
+  private destroy$ = new Subject<void>();
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.store.dispatch(MessagesActions.loadMessages());
-    this.messages$ = this.store.select(selectAllMessages);
+    this.store.select(selectAllMessages)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((messages: Message[]) => this.dataSource = messages);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.unsubscribe();
   }
 
 }

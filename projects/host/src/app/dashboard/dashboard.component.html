@@ -1,3 +1,5 @@
 <h1>Dashboard</h1>
-<app-dashboard-widget-proxy *ngFor="let options of widgetOptions" [options]="options">
-</app-dashboard-widget-proxy>
+<div class="dashboard-container">
+  <app-dashboard-widget-proxy class="widget" *ngFor="let options of widgetOptions" [options]="options">
+  </app-dashboard-widget-proxy>
+</div>
