@@ -1,13 +1,14 @@
 import { loadRemoteModule } from '@angular-architects/module-federation-runtime';
 import { AfterViewInit, Component, ComponentFactoryResolver, Injector, Input, ViewChild, ViewContainerRef } from '@angular/core';
+
 import { WidgetProxyOptions } from './widget-proxy-options';
 
 @Component({
-  selector: 'app-dashboard-widget-proxy',
-  templateUrl: './dashboard-widget-proxy.component.html',
-  styleUrls: ['./dashboard-widget-proxy.component.scss']
+  selector: 'app-widget-proxy',
+  templateUrl: './widget-proxy.component.html',
+  styleUrls: ['./widget-proxy.component.scss']
 })
-export class DashboardWidgetProxyComponent implements AfterViewInit {
+export class WidgetProxyComponent implements AfterViewInit {
   @ViewChild('placeholder', { read: ViewContainerRef, static: true })
   viewContainer: ViewContainerRef | undefined;
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WidgetProxyOptions } from './dashboard-widget-proxy/widget-proxy-options';
+import { WidgetProxyOptions } from '../shared/widget-proxy/widget-proxy-options';
 
 @Component({
   selector: 'app-dashboard',

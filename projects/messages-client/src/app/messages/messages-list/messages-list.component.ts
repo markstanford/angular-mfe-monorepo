@@ -30,4 +30,13 @@ export class MessagesListComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
+  addMessage(): void {
+    const id = '' + (this.dataSource.length + 1);
+    const message: Message = {
+      id,
+      message: `New Message ${id}`
+    }
+    this.store.dispatch(MessagesActions.addMessage({ message }))
+  }
+
 }

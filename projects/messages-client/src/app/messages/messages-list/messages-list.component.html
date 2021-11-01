@@ -1,5 +1,9 @@
 <h1>Messages List</h1>
 
+<p>
+  <button mat-button (click)="addMessage()" color="primary">Add Message</button>
+</p>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="id">

@@ -16,8 +16,10 @@ export class UsersDashboardWidgetComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.store.dispatch(UsersActions.loadUsers());
     this.users$ = this.store.select(selectAllUsers);
   }
 
+  loadUsers(): void {
+    this.store.dispatch(UsersActions.loadUsers());
+  }
 }

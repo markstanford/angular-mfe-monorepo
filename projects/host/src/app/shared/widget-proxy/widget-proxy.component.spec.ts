@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardWidgetProxyComponent } from './dashboard-widget-proxy.component';
+import { WidgetProxyComponent } from './widget-proxy.component';
 
 describe('DashboardWidgetProxyComponent', () => {
-  let component: DashboardWidgetProxyComponent;
-  let fixture: ComponentFixture<DashboardWidgetProxyComponent>;
+  let component: WidgetProxyComponent;
+  let fixture: ComponentFixture<WidgetProxyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardWidgetProxyComponent ]
+      declarations: [WidgetProxyComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardWidgetProxyComponent);
+    fixture = TestBed.createComponent(WidgetProxyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

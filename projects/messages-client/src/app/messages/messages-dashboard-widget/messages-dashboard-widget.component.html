@@ -1,3 +1,6 @@
 <h2>Messages Dashboard Widget</h2>
 <div>{{(messages$ | async)?.length}} messages</div>
-<a routerLink="/messages">View Messages</a>
+<p>
+  <button mat-button routerLink="/messages" color="primary">View All</button>
+  <button mat-button (click)="loadMessages()" color="primary">Load Messages</button>
+</p>

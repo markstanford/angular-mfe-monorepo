@@ -16,8 +16,11 @@ export class MessagesDashboardWidgetComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.store.dispatch(MessagesActions.loadMessages());
     this.messages$ = this.store.select(selectAllMessages);
+  }
+
+  loadMessages(): void {
+    this.store.dispatch(MessagesActions.loadMessages());
   }
 
 }

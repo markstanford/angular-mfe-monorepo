@@ -9,6 +9,9 @@
     <button mat-button aria-label="Messages" routerLink="messages">
       Messages
     </button>
+    <div class="spacer"></div>
+    <app-widget-proxy [options]="messagesHeaderWidgetOptions">
+    </app-widget-proxy>
   </mat-toolbar>
 </p>
 <div class="router-container">

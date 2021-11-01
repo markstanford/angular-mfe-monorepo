@@ -96,11 +96,12 @@ ng g c users/users-list --module users --project users-client
 ng g c users/users-dashboard-widget -m users --project users-client
 ```
 
-### Messages Client Exposed Feature Module And Dashboard Widget
+### Messages Client Exposed Feature Module And Widgets
 ```
 ng g m messages --routing --project messages-client 
 ng g c messages/messages-list --module messages --project messages-client
 ng g c messages/messages-dashboard-widget -m messages --project messages-client
+ng g c messages/messages-header-widget -m messages --project messages-client
 ```
 
 ### Host App Routing
@@ -226,10 +227,12 @@ exposes: {
 
 #### Messages Client webpack.config.js
 ```
+
 ...
 exposes: {
   './MessagesModule': './projects/messages-client/src/app/messages/messages.module.ts',
-  './MessagesDashboardWidgetComponent': './projects/messages-client/src/app/messages/messages-dashboard-widget/messages-dashboard-widget.component.ts',
+  './MessagesDashboardWidgetComponent': './projects/messages-client/src/app/messages/messages-dashboard-widget/,
+  './MessagesHeaderWidgetComponent': './projects/messages-client/src/app/messages/messages-header-widget/messages-header-widget.component.ts',
 },
 ...
 ```

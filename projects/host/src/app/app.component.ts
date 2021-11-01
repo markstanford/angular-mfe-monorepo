@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WidgetProxyOptions } from './shared/widget-proxy/widget-proxy-options';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'host';
+  messagesHeaderWidgetOptions: WidgetProxyOptions = {
+    remoteName: 'messagesClient',
+    exposedModule: './MessagesHeaderWidgetComponent',
+    componentName: 'MessagesHeaderWidgetComponent'
+  };
 }

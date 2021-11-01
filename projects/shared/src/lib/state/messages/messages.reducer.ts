@@ -18,5 +18,7 @@ export const messagesReducer = createReducer(
   on(MessagesActions.loadMessagesSuccess, (state: MessagesState, { messages }): MessagesState =>
     messagesEntityAdapter.setAll(messages, { ...state })),
   on(MessagesActions.loadMessagesFailure, (state, action) =>
-    ({ ...state }))
+    ({ ...state })),
+  on(MessagesActions.addMessage, (state: MessagesState, { message }): MessagesState =>
+    messagesEntityAdapter.upsertOne(message, { ...state })),
 );

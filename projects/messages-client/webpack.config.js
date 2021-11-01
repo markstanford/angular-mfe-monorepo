@@ -28,6 +28,7 @@ module.exports = {
       exposes: {
         './MessagesModule': './projects/messages-client/src/app/messages/messages.module.ts',
         './MessagesDashboardWidgetComponent': './projects/messages-client/src/app/messages/messages-dashboard-widget/messages-dashboard-widget.component.ts',
+        './MessagesHeaderWidgetComponent': './projects/messages-client/src/app/messages/messages-header-widget/messages-header-widget.component.ts'
       },
       shared: share({
         "@angular/animations": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
