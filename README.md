@@ -4,13 +4,14 @@ An Angular monorepo for testing micro frontends using webpack module federation.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
 
-This monorepo contains: 
+This monorepo contains:
+
 - Host - App shell which loads the 2 MFEs
 - Users Client - Users feature MFE
 - Messages Client - Messages feature MFE
 - Shared - Shared Library
 
-Each MFE exposes a feature module and a standalone dashboard widget component. The Host app loads the feature modules via dynamic loading in the app router config and manually loads the dashboard widgets. 
+Each MFE exposes a feature module and a standalone dashboard widget component. The Host app loads the feature modules via dynamic loading in the app router config and manually loads the dashboard widgets.
 
 Reference:
 https://www.angulararchitects.io/en/aktuelles/the-microfrontend-revolution-part-2-module-federation-with-angular/
@@ -39,11 +40,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-
 ## Project Setup
 
 ### Create App
+
 Creates the monorepo structure with the host app, 2 clients and a shared library.
+
 ```
 npx @angular/cli new angular-mfe-monorepo --create-application false
 ng g application host
@@ -53,6 +55,7 @@ ng g library shared
 ```
 
 ### Add @angular-architects Library
+
 ```
 ng add @angular-architects/module-federation --project host --port 5000
 ng add @angular-architects/module-federation --project users-client --port 5001
@@ -60,6 +63,7 @@ ng add @angular-architects/module-federation --project messages-client --port 50
 ```
 
 ### Add NGRX
+
 ```
 ng add @ngrx/store@latest --project host
 ng add @ngrx/store@latest --project users-client
@@ -76,6 +80,7 @@ ng add @ngrx/entity@latest
 ```
 
 ### Configure MFE Shared Libraries
+
 Add NGRX libs to the libraries shared between host and MFEs.
 
 ```
@@ -90,23 +95,26 @@ shared: share({
 ```
 
 ### Users Client Exposed Feature Module
+
 ```
-ng g m users --routing --project users-client 
+ng g m users --routing --project users-client
 ng g c users/users-list --module users --project users-client
-ng g c users/users-dashboard-widget -m users --project users-client
+ng g c users-dashboard-widget --project users-client
 ```
 
 ### Messages Client Exposed Feature Module And Widgets
+
 ```
-ng g m messages --routing --project messages-client 
+ng g m messages --routing --project messages-client
 ng g c messages/messages-list --module messages --project messages-client
-ng g c messages/messages-dashboard-widget -m messages --project messages-client
-ng g c messages/messages-header-widget -m messages --project messages-client
+ng g c messages-dashboard-widget --project messages-client
+ng g c messages-header-widget --project messages-client
 ```
 
 ### Host App Routing
 
-### Configure Host main.ts 
+### Configure Host main.ts
+
 This will preload the metadata of the remote MFEs. This allows module federation to choose the highest compatible app dependency where they differ across MFEs (https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md#part-4-switch-to-dynamic-federation).
 
 ```
@@ -123,6 +131,7 @@ Promise.all([
 ```
 
 #### app-routing.module.ts
+
 ```
 const routes: Routes = [
   {
@@ -145,6 +154,7 @@ const routes: Routes = [
 ### Users Client App Routing
 
 #### app-routing.module.ts
+
 ```
 const routes: Routes = [
   {
@@ -160,6 +170,7 @@ const routes: Routes = [
 ```
 
 #### ./users/users-routing.module.ts
+
 ```
 const routes: Routes = [
   {
@@ -172,6 +183,7 @@ const routes: Routes = [
 ### Messages Client App Routing
 
 #### app-routing.module.ts
+
 ```
 const routes: Routes = [
   {
@@ -187,6 +199,7 @@ const routes: Routes = [
 ```
 
 #### ./messages/messages-routing.module.ts
+
 ```
 const routes: Routes = [
   {
@@ -197,7 +210,8 @@ const routes: Routes = [
 ```
 
 ### Configure Webpack Exposed Client Modules And Shared Lib
-Adding the monorepo `shared` lib here ensures one version will be used across the app. 
+
+Adding the monorepo `shared` lib here ensures one version will be used across the app.
 
 #### Update tsconfig.ts Path To Shared Lib
 
@@ -210,6 +224,7 @@ Adding the monorepo `shared` lib here ensures one version will be used across th
 ```
 
 #### All webpack.config.js Files
+
 ```
 sharedMappings.register(
   path.join(__dirname, '../../tsconfig.json'),
@@ -217,27 +232,30 @@ sharedMappings.register(
 ```
 
 #### Users Client webpack.config.js
+
 ```
 exposes: {
   './UsersModule': './projects/users-client/src/app/users/users.module.ts',
-  './UsersDashboardWidgetComponent': './projects/users-client/src/app/users/users-dashboard-widget/users-dashboard-widget.component.ts',
+  './UsersDashboardWidgetComponent': './projects/users-client/src/app/users-dashboard-widget/users-dashboard-widget.component.ts',
 },
 ...
 ```
 
 #### Messages Client webpack.config.js
+
 ```
 
 ...
 exposes: {
   './MessagesModule': './projects/messages-client/src/app/messages/messages.module.ts',
-  './MessagesDashboardWidgetComponent': './projects/messages-client/src/app/messages/messages-dashboard-widget/,
-  './MessagesHeaderWidgetComponent': './projects/messages-client/src/app/messages/messages-header-widget/messages-header-widget.component.ts',
+  './MessagesDashboardWidgetComponent': './projects/messages-client/src/app/messages-dashboard-widget/,
+  './MessagesHeaderWidgetComponent': './projects/messages-client/src/app/messages-header-widget/messages-header-widget.component.ts',
 },
 ...
 ```
 
 ### Shared Assets
+
 Add to library and then include in Angular.json build for each project:
 
 ```
@@ -251,44 +269,59 @@ Add to library and then include in Angular.json build for each project:
   }
 ```
 
-
-
 #### Generate Sample JSON
+
 https://www.json-generator.com/#
 
-
 ### Shared Library
+
 Add NGRX feature states.
 
-#### Generate services 
+#### Generate services
+
 ```
 ng g s services/users --project shared
 ng g s services/messages --project shared
 ```
 
 ### NGRX Feature States
+
 1. Add to shared library
-2. Import into feature modules for users and messages
+2. Import shared library into feature modules and host app module
 
 NB at this point dynamically loaded feature modules will include the feature state.
 
-3. Add feature state to host dashboard module.
-
-NB Because the dashboard dynamically loads components rather than modules, any dependencies the component uses e.g. services or NGRX feature stores need to be included in the host' dashboard module. It's hoped that when Angular allows module-less components that this won't be required (see https://github.com/angular/angular/discussions/43784).
-
-
 ### Install Angular Material
-Unfortunately because the Angular Architects plugin has altered the main.ts and angular.json files, the `ng add @angular/material` won't work. The Angular Material library needs to be set up manually for the 3 projects.  
 
-Add the material libs to the shared libs for each webpack config:
+Unfortunately because the Angular Architects plugin has altered the main.ts and angular.json files, the `ng add @angular/material` won't work. The Angular Material library needs to be set up manually for the 3 projects.
+
+Add the material libs to the shared libs for each webpack config (note the separate material modules, otherwise they won't be separated into different bundles and will be included in the feature bundles):
+
 ```
 shared: share({
   ...
   "@angular/cdk": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-  "@angular/material": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+  "@angular/material/core": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
+  "@angular/material/table": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
+  "@angular/material/button": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
+  "@angular/material/badge": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
+  "@angular/material/icon": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
   ...
 })
 ```
 
 ### Gotchas
-- If the host app complains of missing libraries/services then check the library is being shared in the MFE's webpack config as a shared library. 
+
+- If the host app complains of missing libraries/services then check the library is being shared in the MFE's webpack config as a shared library.
+- The shared library name in the webpack config needs to match the import in the ts file i.e. '@angular/material/button', not '@angular/material'. Otherwise webpack won't recognise this as a shared module and it could be added to the federated client bundles.
+- If shared libraries have secondary dependencies which aren't specifically listed in the webpack file, they could end up being added to the federated client bundles. A helper property is available to automatically share dependencies (includeSecondaries):
+
+```
+shared: share({
+  ...
+  "rxjs": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
+  ...
+})
+```
+
+- When dynamically loading components (with no modules), any dependences need to be inclused in the module where the component is declared (othwise webpack won't add the library to the list of dynamic dependences in the component bundle).

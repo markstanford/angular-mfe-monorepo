@@ -9,10 +9,18 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { MessagesDashboardWidgetComponent } from './messages-dashboard-widget/messages-dashboard-widget.component';
+import { MessagesHeaderWidgetComponent } from './messages-header-widget/messages-header-widget.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from 'shared';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MessagesDashboardWidgetComponent,
+    MessagesHeaderWidgetComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +29,11 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
+import * as rxjs from 'rxjs'
 import { takeUntil } from 'rxjs/operators';
 
 import { UsersActions, User, selectAllUsers } from 'shared';
@@ -14,7 +14,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'name', 'email', 'active'];
   dataSource: User[] = [];
-  private destroy$ = new Subject<void>();
+  private destroy$ = new rxjs.Subject<void>();
 
   constructor(private store: Store) { }
 

@@ -27,7 +27,7 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         './UsersModule': './projects/users-client/src/app/users/users.module.ts',
-        './UsersDashboardWidgetComponent': './projects/users-client/src/app/users/users-dashboard-widget/users-dashboard-widget.component.ts',
+        './UsersDashboardWidgetComponent': './projects/users-client/src/app/users-dashboard-widget/users-dashboard-widget.component.ts',
       },
       shared: share({
         "@angular/animations": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
@@ -36,13 +36,15 @@ module.exports = {
         "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@angular/forms": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        "@angular/material": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+        "@angular/material/core": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
+        "@angular/material/table": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
+        "@angular/material/button": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
         "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@ngrx/store": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@ngrx/store-devtools": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@ngrx/entity": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@ngrx/effects": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        "rxjs": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+        "rxjs": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
         ...sharedMappings.getDescriptors()
       })
     }),

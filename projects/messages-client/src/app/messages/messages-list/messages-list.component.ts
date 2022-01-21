@@ -19,7 +19,6 @@ export class MessagesListComponent implements OnInit, OnDestroy {
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.store.dispatch(MessagesActions.loadMessages());
     this.store.select(selectAllMessages)
       .pipe(takeUntil(this.destroy$))
       .subscribe((messages: Message[]) => this.dataSource = messages);
@@ -37,6 +36,10 @@ export class MessagesListComponent implements OnInit, OnDestroy {
       message: `New Message ${id}`
     }
     this.store.dispatch(MessagesActions.addMessage({ message }))
+  }
+
+  loadMessages(): void {
+    this.store.dispatch(MessagesActions.loadMessages());
   }
 
 }

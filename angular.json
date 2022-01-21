@@ -40,7 +40,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": [],
-            "extraWebpackConfig": "projects/host/webpack.config.js",
+            "extraWebpackConfig": "projects/host/webpack.host.config.js",
             "commonChunk": false
           },
           "configurations": {
@@ -82,7 +82,7 @@
           "configurations": {
             "production": {
               "browserTarget": "host:build:production",
-              "extraWebpackConfig": "projects/host/webpack.prod.config.js"
+              "extraWebpackConfig": "projects/host/webpack.host.prod.config.js"
             },
             "development": {
               "browserTarget": "host:build:development"
@@ -91,14 +91,14 @@
           "defaultConfiguration": "development",
           "options": {
             "port": 5000,
-            "extraWebpackConfig": "projects/host/webpack.config.js"
+            "extraWebpackConfig": "projects/host/webpack.host.config.js"
           }
         },
         "extract-i18n": {
           "builder": "ngx-build-plus:extract-i18n",
           "options": {
             "browserTarget": "host:build",
-            "extraWebpackConfig": "projects/host/webpack.config.js"
+            "extraWebpackConfig": "projects/host/webpack.host.config.js"
           }
         },
         "test": {
@@ -159,7 +159,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": [],
-            "extraWebpackConfig": "projects/users-client/webpack.config.js",
+            "extraWebpackConfig": "projects/users-client/webpack.users-client.config.js",
             "commonChunk": false
           },
           "configurations": {
@@ -183,7 +183,7 @@
                 }
               ],
               "outputHashing": "all",
-              "extraWebpackConfig": "projects/users-client/webpack.prod.config.js"
+              "extraWebpackConfig": "projects/users-client/webpack.users-client.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -201,7 +201,7 @@
           "configurations": {
             "production": {
               "browserTarget": "users-client:build:production",
-              "extraWebpackConfig": "projects/users-client/webpack.prod.config.js"
+              "extraWebpackConfig": "projects/users-client/webpack.users-client.prod.config.js"
             },
             "development": {
               "browserTarget": "users-client:build:development"
@@ -210,14 +210,14 @@
           "defaultConfiguration": "development",
           "options": {
             "port": 5001,
-            "extraWebpackConfig": "projects/users-client/webpack.config.js"
+            "extraWebpackConfig": "projects/users-client/webpack.users-client.config.js"
           }
         },
         "extract-i18n": {
           "builder": "ngx-build-plus:extract-i18n",
           "options": {
             "browserTarget": "users-client:build",
-            "extraWebpackConfig": "projects/users-client/webpack.config.js"
+            "extraWebpackConfig": "projects/users-client/webpack.users-client.config.js"
           }
         },
         "test": {
@@ -278,7 +278,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": [],
-            "extraWebpackConfig": "projects/messages-client/webpack.config.js",
+            "extraWebpackConfig": "projects/messages-client/webpack.messages-client.config.js",
             "commonChunk": false
           },
           "configurations": {
@@ -302,7 +302,7 @@
                 }
               ],
               "outputHashing": "all",
-              "extraWebpackConfig": "projects/messages-client/webpack.prod.config.js"
+              "extraWebpackConfig": "projects/messages-client/webpack.messages-client.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -320,7 +320,7 @@
           "configurations": {
             "production": {
               "browserTarget": "messages-client:build:production",
-              "extraWebpackConfig": "projects/messages-client/webpack.prod.config.js"
+              "extraWebpackConfig": "projects/messages-client/webpack.messages-client.prod.config.js"
             },
             "development": {
               "browserTarget": "messages-client:build:development"
@@ -329,14 +329,14 @@
           "defaultConfiguration": "development",
           "options": {
             "port": 5002,
-            "extraWebpackConfig": "projects/messages-client/webpack.config.js"
+            "extraWebpackConfig": "projects/messages-client/webpack.messages-client.config.js"
           }
         },
         "extract-i18n": {
           "builder": "ngx-build-plus:extract-i18n",
           "options": {
             "browserTarget": "messages-client:build",
-            "extraWebpackConfig": "projects/messages-client/webpack.config.js"
+            "extraWebpackConfig": "projects/messages-client/webpack.messages-client.config.js"
           }
         },
         "test": {

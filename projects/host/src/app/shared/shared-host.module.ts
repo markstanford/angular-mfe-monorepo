@@ -12,4 +12,4 @@ import { WidgetProxyComponent } from './widget-proxy/widget-proxy.component';
     WidgetProxyComponent
   ]
 })
-export class SharedModule { }
+export class SharedHostModule { }

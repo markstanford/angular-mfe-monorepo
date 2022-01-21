@@ -26,7 +26,9 @@ export class WidgetProxyComponent implements AfterViewInit {
       const factory = this.cfr.resolveComponentFactory(component);
       this.viewContainer?.createComponent(factory, undefined, this.injector);
       this.loading = false;
-    });
+    }), (error: any) => {
+      console.log(`error loading remote component ${this.options.componentName}`, error);
+    };
   }
 
 }

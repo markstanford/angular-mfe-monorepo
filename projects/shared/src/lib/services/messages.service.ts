@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Message } from '../state/messages/message';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MessagesService {
 
   constructor(private http: HttpClient) { }

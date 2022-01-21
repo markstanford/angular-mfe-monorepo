@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../state/users/user';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class UsersService {
 
   constructor(private http: HttpClient) { }
