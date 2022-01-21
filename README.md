@@ -324,4 +324,4 @@ shared: share({
 })
 ```
 
-- When dynamically loading components (with no modules), any dependences need to be inclused in the module where the component is declared (othwise webpack won't add the library to the list of dynamic dependences in the component bundle).
+- When dynamically loading components (with no modules), any dependencies need to be included in the module where the component is declared (otherwise webpack won't add the library to the list of dynamic dependencies in the component bundle).
