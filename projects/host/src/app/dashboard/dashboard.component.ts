@@ -10,11 +10,6 @@ export class DashboardComponent implements OnInit {
 
   widgetOptions: WidgetProxyOptions[] = [
     {
-      remoteName: 'usersClient',
-      exposedModule: './UsersDashboardWidgetComponent',
-      componentName: 'UsersDashboardWidgetComponent'
-    },
-    {
       remoteName: 'messagesClient',
       exposedModule: './MessagesDashboardWidgetComponent',
       componentName: 'MessagesDashboardWidgetComponent'

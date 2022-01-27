@@ -8,37 +8,27 @@ This monorepo contains:
 
 - Host - App shell which loads the 2 MFEs
 - Users Client - Users feature MFE
-- Messages Client - Messages feature MFE
-- Shared - Shared Library
+- Messages Client - Messages feature MFE and 2 widget components
+- Shared - Shared Library (singleton state initialization for messages MFE module and components)
 
-Each MFE exposes a feature module and a standalone dashboard widget component. The Host app loads the feature modules via dynamic loading in the app router config and manually loads the dashboard widgets.
+Each MFE exposes a feature module and the messages client standalone widget components. The Host app loads the feature modules via dynamic loading in the app router config and manually loads the widgets.
+
+Because the Host app loads the Messages Client widgets dynamically, the shared library imported by both Host and Messages Client takes care of initializing the NGRX state.
 
 Reference:
 https://www.angulararchitects.io/en/aktuelles/the-microfrontend-revolution-part-2-module-federation-with-angular/
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server for each project:
 
-## Code scaffolding
+```
+ng serve --project host
+ng serve --project users-client
+ng serve --project messages-client
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run `npm run run:all` to run all apps concurrently.
 
 ## Project Setup
 
@@ -99,7 +89,6 @@ shared: share({
 ```
 ng g m users --routing --project users-client
 ng g c users/users-list --module users --project users-client
-ng g c users-dashboard-widget --project users-client
 ```
 
 ### Messages Client Exposed Feature Module And Widgets
@@ -235,8 +224,7 @@ sharedMappings.register(
 
 ```
 exposes: {
-  './UsersModule': './projects/users-client/src/app/users/users.module.ts',
-  './UsersDashboardWidgetComponent': './projects/users-client/src/app/users-dashboard-widget/users-dashboard-widget.component.ts',
+  './UsersModule': './projects/users-client/src/app/users/users.module.ts'
 },
 ...
 ```
@@ -293,7 +281,16 @@ NB at this point dynamically loaded feature modules will include the feature sta
 
 ### Install Angular Material
 
-Unfortunately because the Angular Architects plugin has altered the main.ts and angular.json files, the `ng add @angular/material` won't work. The Angular Material library needs to be set up manually for the 3 projects.
+Angular material schematics assume the app is bootstrapped in a standard fashion, so the following schematics will revert the custom bootstrap and then reapply it.
+
+```
+ng g @angular-architects/module-federation:boot-async false --project users-client
+
+// add angular material
+ng add @angular/material --project users-client
+
+ng g @angular-architects/module-federation:boot-async true --project users-client
+```
 
 Add the material libs to the shared libs for each webpack config (note the separate material modules, otherwise they won't be separated into different bundles and will be included in the feature bundles):
 
@@ -324,4 +321,4 @@ shared: share({
 })
 ```
 
-- When dynamically loading components (with no modules), any dependencies need to be included in the module where the component is declared (otherwise webpack won't add the library to the list of dynamic dependencies in the component bundle).
+- When dynamically loading components (with no modules), any dependency initialization (e.g. NGRX feature initialization) needs to be included in the module where the component is declared. For the messages client this is done in the host app module as well as the messages client app module and messages feature module. This is achieved by for NGRX by importing the shared (singleton) library which performs this initialization.

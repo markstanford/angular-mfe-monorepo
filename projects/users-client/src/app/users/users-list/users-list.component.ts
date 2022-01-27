@@ -3,7 +3,9 @@ import { Store } from '@ngrx/store';
 import * as rxjs from 'rxjs'
 import { takeUntil } from 'rxjs/operators';
 
-import { UsersActions, User, selectAllUsers } from 'shared';
+import { User } from '../state/user';
+import { UsersActions } from '../state/users.actions';
+import { selectAllUsers } from '../state/users.selectors';
 
 @Component({
   selector: 'app-users-list',

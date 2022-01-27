@@ -6,7 +6,7 @@ const share = mf.share;
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
   path.join(__dirname, '../../tsconfig.json'),
-  ['shared']);
+  []);
 
 module.exports = {
   output: {
@@ -26,8 +26,7 @@ module.exports = {
       name: "usersClient",
       filename: "remoteEntry.js",
       exposes: {
-        './UsersModule': './projects/users-client/src/app/users/users.module.ts',
-        './UsersDashboardWidgetComponent': './projects/users-client/src/app/users-dashboard-widget/users-dashboard-widget.component.ts',
+        './UsersModule': './projects/users-client/src/app/users/users.module.ts'
       },
       shared: share({
         "@angular/animations": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
