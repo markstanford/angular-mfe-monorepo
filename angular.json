@@ -209,6 +209,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
+            "publicHost": "http://localhost:5001",
             "port": 5001,
             "extraWebpackConfig": "projects/users-client/webpack.users-client.config.js"
           }
@@ -328,6 +329,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
+            "publicHost": "http://localhost:5002",
             "port": 5002,
             "extraWebpackConfig": "projects/messages-client/webpack.messages-client.config.js"
           }

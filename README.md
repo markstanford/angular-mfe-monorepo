@@ -110,8 +110,8 @@ This will preload the metadata of the remote MFEs. This allows module federation
 import { loadRemoteEntry } from '@angular-architects/module-federation';
 
 Promise.all([
-  loadRemoteEntry('http://localhost:5001/remoteEntry.js', 'usersClient'),
-  loadRemoteEntry('http://localhost:5002/remoteEntry.js', 'messagesClient')
+  loadRemoteEntry({ type: 'module', remoteEntry: 'http://localhost:5001/remoteEntry.js' }),
+  loadRemoteEntry({ type: 'module', remoteEntry: 'http://localhost:5002/remoteEntry.js' })
 ])
   .catch(err => console.error('Error loading remote entries', err))
   .then(() => import('./bootstrap'))
@@ -126,15 +126,17 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () => loadRemoteModule({
-      remoteName: 'usersClient',
-      exposedModule: './Module'
+      type: 'module',
+      remoteEntry: 'http://localhost:5001/remoteEntry.js',
+      exposedModule: './UsersModule'
     }).then((m) => m.UsersModule)
   },
   {
     path: 'messages',
     loadChildren: () => loadRemoteModule({
-      remoteName: 'messagesClient',
-      exposedModule: './Module'
+      type: 'module',
+      remoteEntry: 'http://localhost:5002/remoteEntry.js',
+      exposedModule: './MessagesModule'
     }).then((m) => m.MessagesModule)
   }
 ];

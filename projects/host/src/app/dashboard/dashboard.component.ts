@@ -10,7 +10,8 @@ export class DashboardComponent implements OnInit {
 
   widgetOptions: WidgetProxyOptions[] = [
     {
-      remoteName: 'messagesClient',
+      type: 'module',
+      remoteEntry: 'http://localhost:5002/remoteEntry.js',
       exposedModule: './MessagesDashboardWidgetComponent',
       componentName: 'MessagesDashboardWidgetComponent'
     }

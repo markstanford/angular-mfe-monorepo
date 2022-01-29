@@ -14,14 +14,16 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () => loadRemoteModule({
-      remoteName: 'usersClient',
+      type: 'module',
+      remoteEntry: 'http://localhost:5001/remoteEntry.js',
       exposedModule: './UsersModule'
     }).then((m) => m.UsersModule)
   },
   {
     path: 'messages',
     loadChildren: () => loadRemoteModule({
-      remoteName: 'messagesClient',
+      type: 'module',
+      remoteEntry: 'http://localhost:5002/remoteEntry.js',
       exposedModule: './MessagesModule'
     }).then((m) => m.MessagesModule)
   },

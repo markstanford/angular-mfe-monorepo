@@ -8,7 +8,8 @@ import { WidgetProxyOptions } from './shared/widget-proxy/widget-proxy-options';
 })
 export class AppComponent {
   messagesHeaderWidgetOptions: WidgetProxyOptions = {
-    remoteName: 'messagesClient',
+    type: 'module',
+    remoteEntry: 'http://localhost:5002/remoteEntry.js',
     exposedModule: './MessagesHeaderWidgetComponent',
     componentName: 'MessagesHeaderWidgetComponent'
   };

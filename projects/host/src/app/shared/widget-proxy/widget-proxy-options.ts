@@ -1,5 +1,5 @@
-import { LoadRemoteModuleOptions } from "@angular-architects/module-federation-runtime";
+import { LoadRemoteModuleEsmOptions } from "@angular-architects/module-federation-runtime";
 
-export interface WidgetProxyOptions extends LoadRemoteModuleOptions {
+export interface WidgetProxyOptions extends LoadRemoteModuleEsmOptions {
   componentName: string;
 }

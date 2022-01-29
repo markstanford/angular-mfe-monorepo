@@ -21,8 +21,12 @@ module.exports = {
       ...sharedMappings.getAliases(),
     }
   },
+  experiments: {
+    outputModule: true
+  },
   plugins: [
     new ModuleFederationPlugin({
+      library: { type: "module" },
       shared: share({
         "@angular/animations": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@angular/cdk": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
