@@ -17,7 +17,9 @@ const routes: Routes = [
       type: 'module',
       remoteEntry: 'http://localhost:5001/remoteEntry.js',
       exposedModule: './UsersModule'
-    }).then((m) => m.UsersModule)
+    })
+      .then((m) => m.UsersModule)
+      .catch(() => import('./remote-error/remote-error.module').then((m) => m.RemoteErrorModule))
   },
   {
     path: 'messages',
@@ -25,7 +27,9 @@ const routes: Routes = [
       type: 'module',
       remoteEntry: 'http://localhost:5002/remoteEntry.js',
       exposedModule: './MessagesModule'
-    }).then((m) => m.MessagesModule)
+    })
+      .then((m) => m.MessagesModule)
+      .catch(() => import('./remote-error/remote-error.module').then((m) => m.RemoteErrorModule))
   },
   {
     path: '**',

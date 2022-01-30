@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedHostModule } from './shared/shared-host.module';
 import { SharedModule } from 'shared';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SharedModule } from 'shared';
     EffectsModule.forRoot([]),
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
     SharedHostModule,
     SharedModule
   ],

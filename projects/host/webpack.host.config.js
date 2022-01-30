@@ -37,6 +37,7 @@ module.exports = {
         "@angular/material/core": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
         "@angular/material/table": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
         "@angular/material/button": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
+        "@angular/material/icon": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
         "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@ngrx/store": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@ngrx/store-devtools": { singleton: true, strictVersion: true, requiredVersion: 'auto' },

@@ -1,5 +1,5 @@
 import { loadRemoteModule } from '@angular-architects/module-federation-runtime';
-import { AfterViewInit, Component, ComponentFactoryResolver, Injector, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild, ViewContainerRef } from '@angular/core';
 
 import { WidgetProxyOptions } from './widget-proxy-options';
 
@@ -15,20 +15,23 @@ export class WidgetProxyComponent implements AfterViewInit {
   @Input() options!: WidgetProxyOptions;
 
   loading = true;
+  remoteLoadingFailed = false;
 
-  constructor(private injector: Injector, private cfr: ComponentFactoryResolver) { }
+  constructor() { }
 
   ngAfterViewInit(): void {
     this.viewContainer?.clear();
 
-    loadRemoteModule(this.options).then((m) => {
-      const component = m[this.options.componentName];
-      const factory = this.cfr.resolveComponentFactory(component);
-      this.viewContainer?.createComponent(factory, undefined, this.injector);
-      this.loading = false;
-    }), (error: any) => {
-      console.log(`error loading remote component ${this.options.componentName}`, error);
-    };
+    loadRemoteModule(this.options)
+      .then((m) => {
+        const component = m[this.options.componentName];
+        this.viewContainer?.createComponent(component);
+        this.loading = false;
+      })
+      .catch((error: any) => {
+        this.remoteLoadingFailed = true;
+        this.loading = false;
+        console.log(`error loading remote component ${this.options.componentName}`, error);
+      });
   }
-
 }
